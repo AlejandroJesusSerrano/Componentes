@@ -1,0 +1,13 @@
+aside{
+    width: var(--aside-width);
+    background-color: #212121;
+    color: #cfcfcf;
+    height: calc(100vh - var(--navbar-height));   
+    position: fixed; 
+    font-size: 1em;
+}
+
+.menu-list{
+    list-style: none;
+    padding: 1em 1rem 1em 1rem;
+}

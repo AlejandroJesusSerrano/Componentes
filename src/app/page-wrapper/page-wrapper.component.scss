@@ -1,0 +1,6 @@
+main{
+    height: calc(100vh - var(--navbar-height));
+    padding: 20px;
+    margin-left: var(--aside-width);
+    background-color: #999999;
+}
