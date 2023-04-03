@@ -8,6 +8,7 @@ import { AsideComponent } from './aside/aside.component';
 import { HomeComponent } from './home/home.component';
 import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 import { StudentsListComponent } from './students-list/students-list.component';
+import { StudentsFormsModule } from './forms/students-forms/students-forms.module';
 
 @NgModule({
   declarations: [
@@ -16,11 +17,12 @@ import { StudentsListComponent } from './students-list/students-list.component';
     AsideComponent,
     HomeComponent,
     PageWrapperComponent,
-    StudentsListComponent
+    StudentsListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StudentsFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
