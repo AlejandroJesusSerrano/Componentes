@@ -1,0 +1,13 @@
+<div *ngFor="let err of formErrors | keyvalue">
+  <ng-container [ngSwitch]="err.key">
+    <small class="text-danger" *ngSwitchCase="'required'">
+      Este campo es requerido
+    </small>
+    <small class="text-danger" *ngSwitchCase="'minlength'">
+      Se espera un mínimo de {{ err.value['requiredLength'] }} caractéres
+    </small>
+    <small class="text-danger" *ngSwitchCase="'maxlength'">
+      Se espera un máximo de {{ err.value['requiredLength'] }} caractéres
+    </small>
+  </ng-container>
+</div>

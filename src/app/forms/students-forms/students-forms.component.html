@@ -1,88 +1,120 @@
 <div class="card container bg-light text-dark p-0">
+
   <div class="card-header bg-dark text-light text-center">
     <h4 class="text-center">Formulario de Alta de Alumno</h4>
   </div>
+
   <div class="card-body">
-    <form [formGroup]="studentsForm" class="row g-3 w-75">
 
-      <div class="col-md-6 col-sm-12">
-        <label for="name" class="form-label">Nombre</label>
-        <input formControlName="name" type="text" class="form-control">
-      </div>
+    <form [formGroup]="studentsForm" (ngSubmit)="onSubmit()" class="row g-3">
 
-      <div class="col-md-6 col-sm-12">
-        <label for="last-name" class="form-label">Apellido</label>
-        <input formControlName="lastName" type="text" class="form-control">
-      </div>
+      <div class="row col-8">
 
-      <div class="col-md-6 col-sm-12">
-        <label for="email" class="form-label">E-mail</label>
-        <input formControlName="email" type="email" class="form-control" id="email" placeholder="alguien@example.com">
-      </div>
+        <div class="col-md-6 col-sm-12">
+          <label for="name" class="form-label">Nombre</label>
+          <input formControlName="name" type="text" [class.is-invalid]="nameControl.invalid && nameControl.touched"
+            class="form-control" placeholder="Escriba sus nombres" aria-label="Escriba sus nombres">
 
-      <div class="col-md-4 col-sm-12">
-        <label for="password" class="form-label">Contraseña</label>
-        <input formControlName="password" type="password" class="form-control" id="password" placeholder="Ingrese una contraseña">
-      </div>
+          <div class="invalid-feedback">
+            <app-form-error-helper [formErrors]="nameControl.errors"></app-form-error-helper>
+          </div>
 
-      <div class="col-md-2 col-sm-12">
-        <label for="course" class="form-label">Curso a inscribirse</label>
-        <select formControlName="course" class="form-select" aria-label="Default select example">
-          <option value='' disabled selected>Seleccione un Curso</option>
-          <option value="PROFAMAG">PROFAMAG</option>
-          <option value="Formación en Genero">Formación en Genero</option>
-          <option value="Ley Yolanda">Ley Yolanda</option>
-        </select>
-      </div>
-
-      <ng-container formGroupName="location">
-      <div class="col-12">
-        <label for="homeAddress" class="form-label">Domicilio</label>
-        <input formControlName="homeAddress" type="text" class="form-control" id="homeAddress" placeholder="1234 Main St">
-      </div>
-
-      <div class="col-12">
-        <label for="workAddress2" class="form-label">Domicilio Laboral</label>
-        <input formControlName="workAddress" type="text" class="form-control" id="workAddress" placeholder="Apartment, studio, or floor">
-      </div>
-
-      <div class="col-md-12 col-lg-6">
-        <label for="city" class="form-label">Ciudad</label>
-        <input formControlName="city" type="text" class="form-control" id="city">
-      </div>
-
-      <div class="col-md-8 col-lg-4">
-        <label for="neighborhood" class="form-label">Barrio</label>
-        <input formControlName="neighborhood" type="text" id="neighborhood" class="form-control">
-      </div>
-
-      <div class="col-md-4 col-lg-2">
-        <label for="zip" class="form-label">CodigoPostal</label>
-        <input formControlName="zip" type="text" class="form-control" id="zip" placeholder="1234">
-      </div>
-      </ng-container>
-
-      <div class="d-flex justify-content-start">
-        <div class="mx-1">
-          <button type="submit" class="btn btn-success">Registrar</button>
         </div>
-        <div class="mx-1">
-          <button type="reset" class="btn btn-danger">Cancelar</button>
+
+        <div class="col-md-6 col-sm-12">
+          <label for="last-name" class="form-label">Apellido</label>
+          <input formControlName="lastName" type="text" class="form-control">
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <label for="email" class="form-label">E-mail</label>
+          <input formControlName="email" type="email" class="form-control" id="email" placeholder="alguien@example.com">
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <label for="password" class="form-label">Contraseña</label>
+          <input formControlName="password" type="password" class="form-control" id="password"
+            placeholder="Ingrese una contraseña">
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+          <label for="course" class="form-label">Curso a inscribirse</label>
+          <select formControlName="course" class="form-select" aria-label="Default select example">
+            <option value='' disabled selected>Seleccione un Curso</option>
+            <option value="PROFAMAG">PROFAMAG</option>
+            <option value="Formación en Genero">Formación en Genero</option>
+            <option value="Ley Yolanda">Ley Yolanda</option>
+          </select>
+        </div>
+
+        <ng-container formGroupName="location">
+          <div class="col-12">
+            <label for="homeAddress" class="form-label">Domicilio</label>
+            <input formControlName="homeAddress" type="text" class="form-control" id="homeAddress"
+              placeholder="1234 Main St">
+          </div>
+
+          <div class="col-12">
+            <label for="workAddress2" class="form-label">Domicilio Laboral</label>
+            <input formControlName="workAddress" type="text" class="form-control" id="workAddress"
+              placeholder="Apartment, studio, or floor">
+          </div>
+
+          <div class="col-md-12 col-lg-6">
+            <label for="city" class="form-label">Ciudad</label>
+            <input formControlName="city" type="text" class="form-control" id="city">
+          </div>
+
+          <div class="col-md-8 col-lg-4">
+            <label for="neighborhood" class="form-label">Barrio</label>
+            <input formControlName="neighborhood" type="text" id="neighborhood" class="form-control">
+          </div>
+
+          <div class="col-md-4 col-lg-2">
+            <label for="zip" class="form-label">CodigoPostal</label>
+            <input formControlName="zip" type="text" class="form-control" id="zip" placeholder="1234">
+          </div>
+        </ng-container>
+
+        <div class="d-flex justify-content-start mt-3">
+          <div class="mx-1">
+            <button type="submit" class="btn btn-success">Registrar</button>
+          </div>
+          <div class="mx-1">
+            <button type="reset" class="btn btn-danger">Cancelar</button>
+          </div>
         </div>
       </div>
+
+      <div class="bg-dark text-light col-4">
+        <h4 class="text-center">JSON CHECK FORM</h4>
+        <pre>
+          {{ studentsForm.value | json }}
+        </pre>
+        <p>
+          errores
+        </p>
+        <pre>
+          {{ nameControl.errors | json }}
+        </pre>
+      </div>
+
     </form>
+
   </div>
 
-  <div class="card-body bg-dark text-light w-25">
-    <h4 class="text-center">JSON CHECK FORM</h4>
-  </div>
 </div>
 
 <div class="card container bg-light text-dark p-0 my-2">
+
   <div class="card-header bg-dark text-light text-center">
     <h4 class="text-center">Listado de Estudiantes</h4>
   </div>
-  <div class="card-body">
 
+  <div class="card-body">
+    <pre>
+      {{ students | json }}
+    </pre>
   </div>
+
 </div>

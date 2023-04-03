@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-students-forms',
@@ -9,19 +9,54 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 export class StudentsFormsComponent {
 
+  students: any [] = [];
+
   studentsForm: FormGroup;
 
-  nameControl = new FormControl('Nombre');
-  lastNameControl = new FormControl('Apellido');
-  emailControl = new FormControl('alguien@example')
-  passwordControl = new FormControl('No uses 1234');
-  courseControl = new FormControl('');
-  hAddressControl = new FormControl('que te importa 123');
-  wAddressControl = new FormControl('hoallaalla');
-  cityControl = new FormControl('asdfasdf');
-  neighControl = new FormControl('asdfasdf');
-  zipControl = new FormControl('12313');
+  nameControl = new FormControl('', [
+    Validators.minLength(3),
+    Validators.maxLength(30),
+    Validators.required,
+  ]);
 
+  lastNameControl = new FormControl('', [
+    Validators.minLength(3),
+    Validators.maxLength(30),
+    Validators.required,
+  ]);
+
+  emailControl = new FormControl('', [
+    Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-_]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?'),
+    Validators.required,
+  ]);
+
+  passwordControl = new FormControl('', [
+    Validators.maxLength(14),
+    Validators.minLength(6),
+    Validators.required,
+  ]);
+
+  courseControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  hAddressControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  wAddressControl = new FormControl('');
+
+  cityControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  neighControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  zipControl = new FormControl('', [
+    Validators.required,
+  ]);
 
   constructor(public FormBuilder: FormBuilder){
 
@@ -42,5 +77,19 @@ export class StudentsFormsComponent {
 
     });
   }
+
+  onSubmit(): void{
+
+    if (this.studentsForm.valid) {
+      console.log(this.studentsForm)
+      this.students.push(this.studentsForm.value)
+      this.studentsForm.reset()
+    } else {
+      alert('El formulario no es válido')
+    }
+    console.log(this.studentsForm.value)
+  }
+
+
 
 }
