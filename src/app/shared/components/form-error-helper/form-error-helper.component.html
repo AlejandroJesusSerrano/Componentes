@@ -9,5 +9,11 @@
     <small class="text-danger" *ngSwitchCase="'maxlength'">
       Se espera un máximo de {{ err.value['requiredLength'] }} caractéres
     </small>
+    <small class="text-danger" *ngSwitchCase="'pattern'">
+      Se espera un formato "alguien@example.com o com.ar"
+    </small>
+    <small class="text-danger" *ngSwitchCase="'passwordFormat'">
+      Se espera que la contraseña tenga entre 6 a 14 carcteres y por lo menos, una letra mayuscula y un caracter especial:(@$!%*?&+-)
+    </small>
   </ng-container>
 </div>

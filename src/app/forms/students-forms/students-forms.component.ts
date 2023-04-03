@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-students-forms',
@@ -31,9 +31,8 @@ export class StudentsFormsComponent {
   ]);
 
   passwordControl = new FormControl('', [
-    Validators.maxLength(14),
-    Validators.minLength(6),
     Validators.required,
+    this.passwordRestriction()
   ]);
 
   courseControl = new FormControl('', [
@@ -76,7 +75,7 @@ export class StudentsFormsComponent {
       }),
 
     });
-  }
+  };
 
   onSubmit(): void{
 
@@ -88,8 +87,14 @@ export class StudentsFormsComponent {
       alert('El formulario no es válido')
     }
     console.log(this.studentsForm.value)
-  }
+  };
 
-
-
-}
+  passwordRestriction(): ValidatorFn {
+    return (control: AbstractControl) : ValidationErrors | null => {
+      const passwordRegex = /^(?=.*[A-Z])(?=.*[@$!%*+?&\-])[A-Za-z\d@$!%*?&+\-]{6,14}$/;
+      const valid = passwordRegex.test(control.value);
+      
+      return valid? null : {passwordFormat: true};
+    }
+  };
+};

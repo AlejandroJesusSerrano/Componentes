@@ -6,73 +6,162 @@
 
   <div class="card-body">
 
-    <form [formGroup]="studentsForm" (ngSubmit)="onSubmit()" class="row g-3">
+    <form 
+      [formGroup]="studentsForm"
+      (ngSubmit)="onSubmit()"
+      class="row g-3"
+    >
 
       <div class="row col-8">
 
         <div class="col-md-6 col-sm-12">
           <label for="name" class="form-label">Nombre</label>
-          <input formControlName="name" type="text" [class.is-invalid]="nameControl.invalid && nameControl.touched"
-            class="form-control" placeholder="Escriba sus nombres" aria-label="Escriba sus nombres">
+          <input 
+            formControlName="name"
+            type="text"
+            [class.is-invalid]="nameControl.invalid && nameControl.touched"
+            class="form-control"
+            placeholder="Escriba sus nombres"
+            aria-label="Escriba sus nombres"
+          >
 
           <div class="invalid-feedback">
             <app-form-error-helper [formErrors]="nameControl.errors"></app-form-error-helper>
           </div>
-
         </div>
 
         <div class="col-md-6 col-sm-12">
           <label for="last-name" class="form-label">Apellido</label>
-          <input formControlName="lastName" type="text" class="form-control">
+          <input
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="lastNameControl.invalid && lastNameControl.touched"
+            placeholder="Escriba su Apellido"
+            aria-label="Escriba su Apellido"
+          >
+          
+          <div class="invalid-feedback">
+            <app-form-error-helper [formErrors]="lastNameControl.errors"></app-form-error-helper>
+          </div>
         </div>
 
         <div class="col-md-6 col-sm-12">
           <label for="email" class="form-label">E-mail</label>
-          <input formControlName="email" type="email" class="form-control" id="email" placeholder="alguien@example.com">
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            [class.is-invalid]="emailControl.invalid && emailControl.touched"
+            id="email"
+            placeholder="alguien@example.com">
+          
+          <div class="invalid-feedback">
+            <app-form-error-helper [formErrors]="emailControl.errors"></app-form-error-helper>
+          </div>
         </div>
 
         <div class="col-md-4 col-sm-12">
           <label for="password" class="form-label">Contraseña</label>
-          <input formControlName="password" type="password" class="form-control" id="password"
-            placeholder="Ingrese una contraseña">
+          <input 
+            formControlName="password"
+            type="password"
+            class="form-control"
+            [class.is-invalid]="passwordControl.invalid && passwordControl.touched"
+            id="password"
+            placeholder="Ingrese una contraseña"
+          >
+          <div class="invalid-feedback">
+            <app-form-error-helper [formErrors]="passwordControl.errors"></app-form-error-helper>
+          </div>
         </div>
 
         <div class="col-md-2 col-sm-12">
           <label for="course" class="form-label">Curso a inscribirse</label>
-          <select formControlName="course" class="form-select" aria-label="Default select example">
+          <select 
+            formControlName="course" 
+            class="form-select" 
+            [class.is-invalid]="courseControl.invalid && courseControl.touched" 
+            aria-label="Default select example"
+          >
             <option value='' disabled selected>Seleccione un Curso</option>
             <option value="PROFAMAG">PROFAMAG</option>
             <option value="Formación en Genero">Formación en Genero</option>
             <option value="Ley Yolanda">Ley Yolanda</option>
           </select>
+          <div class="invalid-feedback">
+            <app-form-error-helper [formErrors]="courseControl.errors"></app-form-error-helper>
+          </div>
         </div>
 
         <ng-container formGroupName="location">
           <div class="col-12">
             <label for="homeAddress" class="form-label">Domicilio</label>
-            <input formControlName="homeAddress" type="text" class="form-control" id="homeAddress"
-              placeholder="1234 Main St">
+            <input 
+              formControlName="homeAddress"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="hAddressControl.invalid && hAddressControl.touched"
+              id="homeAddress"
+              placeholder="1234 Main St"
+            >
+            <div class="invalid-feedback">
+              <app-form-error-helper [formErrors]="hAddressControl.errors"></app-form-error-helper>
+            </div>
           </div>
 
           <div class="col-12">
             <label for="workAddress2" class="form-label">Domicilio Laboral</label>
-            <input formControlName="workAddress" type="text" class="form-control" id="workAddress"
-              placeholder="Apartment, studio, or floor">
+            <input
+              formControlName="workAddress"
+              type="text"
+              class="form-control"
+              id="workAddress"
+              placeholder="Apartment, studio, or floor"
+            >
           </div>
 
           <div class="col-md-12 col-lg-6">
             <label for="city" class="form-label">Ciudad</label>
-            <input formControlName="city" type="text" class="form-control" id="city">
+            <input
+              formControlName="city"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="cityControl.invalid && cityControl.touched"
+              id="city"
+            >
+            <div class="invalid-feedback">
+              <app-form-error-helper [formErrors]="cityControl.errors"></app-form-error-helper>
+            </div>
           </div>
 
           <div class="col-md-8 col-lg-4">
             <label for="neighborhood" class="form-label">Barrio</label>
-            <input formControlName="neighborhood" type="text" id="neighborhood" class="form-control">
+            <input
+              formControlName="neighborhood"
+              type="text"
+              id="neighborhood"
+              class="form-control"
+              [class.is-invalid]="neighControl.invalid && neighControl.touched"
+            >
+            <div class="invalid-feedback">
+              <app-form-error-helper [formErrors]="neighControl.errors"></app-form-error-helper>
+            </div>
           </div>
 
           <div class="col-md-4 col-lg-2">
             <label for="zip" class="form-label">CodigoPostal</label>
-            <input formControlName="zip" type="text" class="form-control" id="zip" placeholder="1234">
+            <input 
+              formControlName="zip"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="zipControl.invalid && zipControl.touched"
+              id="zip"
+              placeholder="1234"
+            >
+            <div class="invalid-feedback">
+              <app-form-error-helper [formErrors]="zipControl.errors"></app-form-error-helper>
+            </div>
           </div>
         </ng-container>
 
@@ -91,14 +180,7 @@
         <pre>
           {{ studentsForm.value | json }}
         </pre>
-        <p>
-          errores
-        </p>
-        <pre>
-          {{ nameControl.errors | json }}
-        </pre>
       </div>
-
     </form>
 
   </div>
